@@ -24,6 +24,8 @@ npm start
 
 Then you can see the website in [http://localhost:3000/](http://localhost:3000/)
 
+> You can also visit [this link](https://andyliangtw.github.io/React-MOTC_Transport_API) to reach out my published website.
+
 ## Design of Website
 
 ### Route
