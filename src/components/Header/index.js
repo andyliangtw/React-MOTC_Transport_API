@@ -16,11 +16,15 @@ export default function Header() {
       <Navbar.Toggle aria-controls="navbar-nav" />
       <Navbar.Collapse id="navbar-nav">
         <Nav>
-          <Nav.Link href="/scenicSpot">全部景點</Nav.Link>
+          <Nav.Link href={`${process.env.PUBLIC_URL}/scenicSpot`}>
+            全部景點
+          </Nav.Link>
           <NavDropdown title="各縣市景點" id="navbar-citys">
             {Object.entries(CITYS).map(([cityEnName, cityZhName], i) => {
               return (
-                <NavDropdown.Item key={i} href={`/scenicSpot/${cityEnName}`}>
+                <NavDropdown.Item
+                  key={i}
+                  href={`${process.env.PUBLIC_URL}/scenicSpot/${cityEnName}`}>
                   {cityZhName}
                 </NavDropdown.Item>
               );

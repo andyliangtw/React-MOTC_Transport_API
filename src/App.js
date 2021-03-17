@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -7,9 +7,9 @@ import Header from './components/Header';
 import ROUTES from './routes';
 import './App.scss';
 
-function App() {
+export default function App() {
   return (
-    <Router>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Container>
           <Header />
@@ -25,8 +25,6 @@ function App() {
           ))}
         </Container>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
-
-export default App;
