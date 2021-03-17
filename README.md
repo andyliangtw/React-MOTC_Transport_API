@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# React-MOTC_Transport_API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+This website shows "All" or "City's" scenic spots of Taiwan using [MOTC Transport API V2](https://ptx.transportdata.tw/MOTC?t=Tourism&v=2).
 
-In the project directory, you can run:
+It's [Dcard's 2021 Web Frontend Intern Homework](https://boards.greenhouse.io/dcard/jobs/2670808) as well.
 
-### `yarn start`
+## Pre-requisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`git`, `npm` installed. (latest version is preffered)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+git clone https://github.com/andyliangtw/React-MOTC_Transport_API.git
+cd React-MOTC_Transport_API
+npm install
+```
 
-### `yarn test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+npm start
+```
 
-### `yarn build`
+Then you can see the website in [http://localhost:3000/](http://localhost:3000/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Design of Website
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Route
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `/` -> `<Main />` (Root)
+- `/scenicSpot` -> `<ScenicSpots />` (All Scenic Spots)
+- `/scenicSpot/:city` -> `<ScenicSpots />` (City's Scenic Spots)
+  - if `:city` is `LienchiangCounty`, the url will become `/scenicSpot/LienchiangCounty` and shows only the scenic spots in LienchiangCounty
 
-### `yarn eject`
+### Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```html
+<App>
+  <Header />
+  <Main /> or <ScenicSpots />
+<App>
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### `<Header>`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The navbar of the website (on the top).
 
-## Learn More
+It can link to `/scenicSpot` or `/scenicSpot/:city`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### `<Main>`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The root page of the website which gives hints to the users.
 
-### Code Splitting
+#### `<ScenicSpots>`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+If there's `city` specified in the url, this component will show only the scenic spots in that `city`.
+Otherwise, this component will show all scenic spots in Taiwan.
 
-### Analyzing the Bundle Size
+It will show only the first 30 scenic spots until user scrolls to the bottom of the website. Then it will show the next 30 scenic spots if there exists.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If it's in waiting state (e.g. API hasn't been back), there will be a `<Spinner>` to tell user it's processing.
 
-### Making a Progressive Web App
+#### `<Spinner>`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A spinner.
