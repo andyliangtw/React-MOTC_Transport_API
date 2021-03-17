@@ -1,11 +1,12 @@
 import api from './index';
+import { objToURLParams } from '../tools';
 
 const motcAPI = {};
 
-motcAPI.getAllScenicSpot = () => {
+motcAPI.getAllScenicSpots = (urlParams = {}) => {
   return api.fire(
     {
-      url: `/v2/Tourism/ScenicSpot`,
+      url: `/v2/Tourism/ScenicSpot${objToURLParams(urlParams)}`,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -15,10 +16,10 @@ motcAPI.getAllScenicSpot = () => {
   );
 };
 
-motcAPI.getCityScenicSpot = (city) => {
+motcAPI.getCityScenicSpots = (city, urlParams = {}) => {
   return api.fire(
     {
-      url: `/v2/Tourism/ScenicSpot/${city}`,
+      url: `/v2/Tourism/ScenicSpot/${city}${objToURLParams(urlParams)}`,
       headers: {
         'Content-Type': 'application/json',
       },

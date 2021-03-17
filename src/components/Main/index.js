@@ -1,25 +1,10 @@
-import { useState, useEffect } from 'react';
-
-import motcAPI from '../../api/motcAPI';
+import React from 'react';
 
 export default function Main() {
-  const [allScenicSpot, setAllScenicSpot] = useState([]);
-
-  const initScenicSpot = async () => {
-    const { data } = await motcAPI.getAllScenicSpot();
-    setAllScenicSpot(data);
-  };
-
-  useEffect(() => {
-    initScenicSpot();
-  }, []);
-
   return (
     <div>
-      {allScenicSpot &&
-        allScenicSpot.map((spot, i) => {
-          return <p key={i}>{i}: {spot.Name}</p>;
-        })}
+      <h3>Welcome here!</h3>
+      <p>請點擊頂端的「全部景點」或「各縣市景點」來查看景點</p>
     </div>
   );
 }
