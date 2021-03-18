@@ -9,7 +9,7 @@ import motcAPI from '../../api/motcAPI';
 import { CITYS, SPOTS_PER_RENEW } from '../../constants';
 
 export default function ScenicSpots() {
-  const { city } = useParams();
+  const { city: cityKey } = useParams();
 
   const [spotDatas, setSpotDatas] = useState([]);
   const [renewCount, setRenewCount] = useState(0);
@@ -25,15 +25,15 @@ export default function ScenicSpots() {
 
     try {
       const { data } =
-        city in CITYS
-          ? await motcAPI.getCityScenicSpots(city, params)
+        cityKey in CITYS
+          ? await motcAPI.getCityScenicSpots(cityKey, params)
           : await motcAPI.getAllScenicSpots(params);
       setShowSpinner(false);
       setSpotDatas((prevSpotDatas) => [...prevSpotDatas, ...data]);
     } catch (err) {
       console.error(err);
     }
-  }, [city, renewCount]);
+  }, [cityKey, renewCount]);
 
   useEffect(() => {
     getScenicSpotDatas();
@@ -45,6 +45,7 @@ export default function ScenicSpots() {
 
   return (
     <>
+      <h2>{cityKey in CITYS ? CITYS[cityKey] : '全部'}景點</h2>
       <Table>
         <thead>
           <tr>
